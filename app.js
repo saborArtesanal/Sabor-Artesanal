@@ -37,15 +37,139 @@ function renderProducts() {
         const card = document.createElement('div');
         card.className = 'product-card';
 
-        // Imagen solo si existe
-        if (product.image) {
+        // Imagen o carrusel de imágenes
+        let images = [];
+        if (product.images && Array.isArray(product.images) && product.images.length > 0) {
+            images = product.images;
+        } else if (product.image) {
+            images = [product.image];
+        }
+        if (images.length > 0) {
+            let current = 0;
+            const imgWrap = document.createElement('div');
+            imgWrap.className = 'product-img-carousel';
+            imgWrap.style.position = 'relative';
+            imgWrap.style.width = '100%';
+            imgWrap.style.height = '200px';
+            imgWrap.style.overflow = 'hidden';
             const img = document.createElement('img');
-            img.src = product.image;
+            img.src = images[0];
             img.alt = product.name;
-            img.onerror = function () {
-                this.style.display = 'none';
-            };
-            card.appendChild(img);
+            img.style.width = '100%';
+            img.style.height = '100%';
+            img.style.objectFit = 'cover';
+            img.style.borderRadius = '1em';
+            img.style.cursor = 'pointer';
+            img.onerror = function () { this.style.display = 'none'; };
+            imgWrap.appendChild(img);
+            // Flechas si hay más de una imagen
+            if (images.length > 1) {
+                const leftBtn = document.createElement('button');
+                leftBtn.innerHTML = '&#8592;';
+                leftBtn.style.position = 'absolute';
+                leftBtn.style.left = '10px';
+                leftBtn.style.top = '50%';
+                leftBtn.style.transform = 'translateY(-50%)';
+                leftBtn.style.background = 'rgba(255,255,255,0.7)';
+                leftBtn.style.border = 'none';
+                leftBtn.style.borderRadius = '50%';
+                leftBtn.style.width = '2em';
+                leftBtn.style.height = '2em';
+                leftBtn.style.cursor = 'pointer';
+                leftBtn.style.fontSize = '1.3em';
+                leftBtn.onclick = function (e) {
+                    e.stopPropagation();
+                    current = (current - 1 + images.length) % images.length;
+                    img.src = images[current];
+                };
+                imgWrap.appendChild(leftBtn);
+                const rightBtn = document.createElement('button');
+                rightBtn.innerHTML = '&#8594;';
+                rightBtn.style.position = 'absolute';
+                rightBtn.style.right = '10px';
+                rightBtn.style.top = '50%';
+                rightBtn.style.transform = 'translateY(-50%)';
+                rightBtn.style.background = 'rgba(255,255,255,0.7)';
+                rightBtn.style.border = 'none';
+                rightBtn.style.borderRadius = '50%';
+                rightBtn.style.width = '2em';
+                rightBtn.style.height = '2em';
+                rightBtn.style.cursor = 'pointer';
+                rightBtn.style.fontSize = '1.3em';
+                rightBtn.onclick = function (e) {
+                    e.stopPropagation();
+                    current = (current + 1) % images.length;
+                    img.src = images[current];
+                };
+                imgWrap.appendChild(rightBtn);
+            }
+            // Modal para ver imagen grande y navegar
+            imgWrap.addEventListener('click', function () {
+                let modalIndex = current;
+                const modalBg = document.createElement('div');
+                modalBg.style.position = 'fixed';
+                modalBg.style.top = 0;
+                modalBg.style.left = 0;
+                modalBg.style.width = '100vw';
+                modalBg.style.height = '100vh';
+                modalBg.style.background = 'rgba(0,0,0,0.7)';
+                modalBg.style.display = 'flex';
+                modalBg.style.alignItems = 'center';
+                modalBg.style.justifyContent = 'center';
+                modalBg.style.zIndex = 9999;
+                const modalImg = document.createElement('img');
+                modalImg.src = images[modalIndex];
+                modalImg.style.maxWidth = '90vw';
+                modalImg.style.maxHeight = '90vh';
+                modalImg.style.borderRadius = '1em';
+                modalImg.style.boxShadow = '0 8px 32px #0008';
+                modalBg.appendChild(modalImg);
+                if (images.length > 1) {
+                    const leftBtn = document.createElement('button');
+                    leftBtn.innerHTML = '&#8592;';
+                    leftBtn.style.position = 'absolute';
+                    leftBtn.style.left = '2vw';
+                    leftBtn.style.top = '50%';
+                    leftBtn.style.transform = 'translateY(-50%)';
+                    leftBtn.style.background = 'rgba(255,255,255,0.7)';
+                    leftBtn.style.border = 'none';
+                    leftBtn.style.borderRadius = '50%';
+                    leftBtn.style.width = '2.5em';
+                    leftBtn.style.height = '2.5em';
+                    leftBtn.style.cursor = 'pointer';
+                    leftBtn.style.fontSize = '1.7em';
+                    leftBtn.onclick = function (e) {
+                        e.stopPropagation();
+                        modalIndex = (modalIndex - 1 + images.length) % images.length;
+                        modalImg.src = images[modalIndex];
+                    };
+                    modalBg.appendChild(leftBtn);
+                    const rightBtn = document.createElement('button');
+                    rightBtn.innerHTML = '&#8594;';
+                    rightBtn.style.position = 'absolute';
+                    rightBtn.style.right = '2vw';
+                    rightBtn.style.top = '50%';
+                    rightBtn.style.transform = 'translateY(-50%)';
+                    rightBtn.style.background = 'rgba(255,255,255,0.7)';
+                    rightBtn.style.border = 'none';
+                    rightBtn.style.borderRadius = '50%';
+                    rightBtn.style.width = '2.5em';
+                    rightBtn.style.height = '2.5em';
+                    rightBtn.style.cursor = 'pointer';
+                    rightBtn.style.fontSize = '1.7em';
+                    rightBtn.onclick = function (e) {
+                        e.stopPropagation();
+                        modalIndex = (modalIndex + 1) % images.length;
+                        modalImg.src = images[modalIndex];
+                    };
+                    modalBg.appendChild(rightBtn);
+                }
+                modalBg.addEventListener('click', function () {
+                    document.body.removeChild(modalBg);
+                });
+                document.body.appendChild(modalBg);
+            });
+            card.appendChild(imgWrap);
         }
 
         // Título
@@ -95,6 +219,7 @@ function setupAdminPanel() {
     const imageInput = document.createElement('input');
     imageInput.type = 'file';
     imageInput.accept = 'image/*';
+    imageInput.multiple = true;
     imageInput.required = true;
     imageInput.id = 'custom-image-input';
     imageInput.style.display = 'none';
@@ -112,20 +237,25 @@ function setupAdminPanel() {
     fileNameSpan.className = 'file-name';
     form.insertBefore(fileNameSpan, form.querySelector('button[type="submit"]'));
 
-    let uploadedImageBase64 = '';
+    let uploadedImagesBase64 = [];
 
     imageInput.onchange = function (e) {
-        const file = e.target.files[0];
-        if (file) {
-            fileNameSpan.textContent = file.name;
-            const reader = new FileReader();
-            reader.onload = function (evt) {
-                uploadedImageBase64 = evt.target.result;
-            };
-            reader.readAsDataURL(file);
+        const files = Array.from(e.target.files);
+        uploadedImagesBase64 = [];
+        if (files.length > 0) {
+            fileNameSpan.textContent = files.map(f => f.name).join(', ');
+            let loaded = 0;
+            files.forEach((file, idx) => {
+                const reader = new FileReader();
+                reader.onload = function (evt) {
+                    uploadedImagesBase64[idx] = evt.target.result;
+                    loaded++;
+                };
+                reader.readAsDataURL(file);
+            });
         } else {
             fileNameSpan.textContent = '';
-            uploadedImageBase64 = '';
+            uploadedImagesBase64 = [];
         }
     };
 
@@ -134,21 +264,24 @@ function setupAdminPanel() {
         const name = form.name.value.trim();
         const description = form.description.value.trim();
         const price = parseFloat(form.price.value);
-        const image = uploadedImageBase64;
-        if (!name || !description || isNaN(price) || !image) return;
+        const images = uploadedImagesBase64.filter(Boolean);
+        if (!name || !description || isNaN(price)) return;
         const products = getProducts();
         const newProduct = {
             id: Date.now(),
             name,
             description,
-            price,
-            image
+            price
         };
+        if (images.length > 0) {
+            newProduct.images = images;
+        }
         products.push(newProduct);
         saveProducts(products);
         renderProducts();
         form.reset();
-        uploadedImageBase64 = '';
+        uploadedImagesBase64 = [];
+        fileNameSpan.textContent = '';
     };
 }
 

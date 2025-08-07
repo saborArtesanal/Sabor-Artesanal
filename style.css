@@ -1,3 +1,32 @@
+/* --- Fix botón de login fuera de pantalla en móvil --- */
+#admin-login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7em;
+    align-items: stretch;
+}
+
+#admin-login-form input[type="password"],
+#admin-login-form button {
+    width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
+}
+
+@media (min-width: 600px) {
+    #admin-login-form {
+        flex-direction: row;
+        gap: 0.5em;
+        align-items: center;
+    }
+
+    #admin-login-form input[type="password"],
+    #admin-login-form button {
+        width: auto;
+        min-width: 0;
+    }
+}
+
 body {
     background: #fff6ed;
     color: #804000;
@@ -29,6 +58,9 @@ main {
     max-width: 900px;
     margin: 2rem auto;
     padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #products-section h2,
@@ -42,6 +74,7 @@ main {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 2rem;
     margin-bottom: 2rem;
+    justify-content: center;
 }
 
 .product-card {
@@ -63,9 +96,12 @@ main {
 
 .product-card img {
     width: 100%;
-    max-width: 160px;
-    border-radius: 12px;
-    margin-bottom: 0.7rem;
+    height: 220px;
+    max-width: 100%;
+    min-width: 0;
+    object-fit: cover;
+    border-radius: 16px 16px 12px 12px;
+    margin: 0 0 0.7rem 0;
     box-shadow: 0 1px 6px #80400022;
 }
 
@@ -118,6 +154,25 @@ main {
     flex-wrap: wrap;
     gap: 0.7rem;
     margin-bottom: 0.7rem;
+    align-items: flex-end;
+    justify-content: flex-start;
+}
+
+@media (max-width: 600px) {
+    #add-product-form {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.7rem;
+    }
+
+    #add-product-form input,
+    #add-product-form .custom-file-label,
+    #add-product-form .file-name,
+    #add-product-form button {
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+    }
 }
 
 #add-product-form input {
@@ -229,4 +284,3 @@ footer {
     border-radius: 12px 12px 0 0;
     box-shadow: 0 -2px 8px #0001;
 }
-
