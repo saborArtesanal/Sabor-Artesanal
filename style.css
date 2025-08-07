@@ -1,0 +1,232 @@
+body {
+    background: #fff6ed;
+    color: #804000;
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    margin: 0;
+    min-height: 100vh;
+}
+
+header {
+    background: #804000;
+    color: #fff6ed;
+    padding: 2rem 0 1rem 0;
+    text-align: center;
+    box-shadow: 0 2px 8px #0001;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+}
+
+header p {
+    margin: 0.5rem 0 0 0;
+    font-size: 1.2rem;
+}
+
+main {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+#products-section h2,
+#admin-panel h2 {
+    color: #804000;
+    margin-bottom: 1rem;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.product-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px #80400022;
+    padding: 1.2rem 1rem 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.15s;
+    position: relative;
+}
+
+.product-card:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 4px 20px #80400033;
+}
+
+.product-card img {
+    width: 100%;
+    max-width: 160px;
+    border-radius: 12px;
+    margin-bottom: 0.7rem;
+    box-shadow: 0 1px 6px #80400022;
+}
+
+.product-card h3 {
+    margin: 0.2rem 0 0.3rem 0;
+    font-size: 1.2rem;
+    color: #804000;
+}
+
+.product-card p {
+    font-size: 0.98rem;
+    color: #6a3a00;
+    margin: 0 0 0.5rem 0;
+    text-align: center;
+}
+
+.product-card .price {
+    font-weight: bold;
+    color: #804000;
+    margin-bottom: 0.7rem;
+    display: block;
+}
+
+.product-card .delete-btn {
+    background: #804000;
+    color: #fff6ed;
+    border: none;
+    border-radius: 8px;
+    padding: 0.4rem 1.1rem;
+    cursor: pointer;
+    font-size: 0.95rem;
+    margin-top: 0.3rem;
+    transition: background 0.2s;
+}
+
+.product-card .delete-btn:hover {
+    background: #a05a1a;
+}
+
+#admin-panel {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 10px #80400018;
+    padding: 1.5rem 1rem 1rem 1rem;
+    margin-bottom: 2rem;
+}
+
+#add-product-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-bottom: 0.7rem;
+}
+
+#add-product-form input {
+    flex: 1 1 180px;
+    padding: 0.5rem;
+    border: 1px solid #80400044;
+    border-radius: 7px;
+    font-size: 1rem;
+    background: #fff6ed;
+    color: #804000;
+}
+
+#add-product-form input[type="file"] {
+    display: none;
+}
+
+#add-product-form .custom-file-label {
+    display: inline-block;
+    background: #804000;
+    color: #fff6ed;
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem 1.2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 0.7rem;
+    margin-right: 0.7rem;
+    transition: background 0.2s;
+    font-weight: bold;
+}
+
+#add-product-form .custom-file-label:hover {
+    background: #a05a1a;
+}
+
+#add-product-form .file-name {
+    color: #804000;
+    font-size: 0.98rem;
+    margin-right: 0.7rem;
+}
+
+#add-product-form button {
+    background: #804000;
+    color: #fff6ed;
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem 1.2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#add-product-form button:hover {
+    background: #a05a1a;
+}
+
+#admin-panel small {
+    color: #6a3a00;
+    display: block;
+    margin-top: 0.5rem;
+}
+
+#admin-login-form {
+    display: flex;
+    gap: 0.7rem;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 1.2rem;
+}
+
+#admin-login-form input[type="password"] {
+    padding: 0.5rem 1rem;
+    border: 1px solid #80400044;
+    border-radius: 7px;
+    font-size: 1rem;
+    background: #fff6ed;
+    color: #804000;
+    outline: none;
+    transition: border 0.2s;
+}
+
+#admin-login-form input[type="password"]:focus {
+    border: 1.5px solid #804000;
+}
+
+#admin-login-form button[type="submit"] {
+    background: #804000;
+    color: #fff6ed;
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem 1.2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+#admin-login-form button[type="submit"]:hover {
+    background: #a05a1a;
+}
+
+footer {
+    background: #804000;
+    color: #fff6ed;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
+    border-radius: 12px 12px 0 0;
+    box-shadow: 0 -2px 8px #0001;
+}
+
