@@ -22,7 +22,7 @@ const products = [
         name: "Pizza artesanal.",
         description: "Deliciosa pizza artesanal con ingredientes frescos.",
         price: 30.00,
-        images: ["img/pizza artesanal.png"]
+        images: ["img/pizza_artesanal.png"]
     },
     {
         name: "Grisinis con ajonjolí",
@@ -51,6 +51,7 @@ const products = [
         price: 900.00,
         images: ["img/Pasteles de Boda.png"]
     },
+    // Agrega más productos aquí
 ];
 
 function renderProducts() {
