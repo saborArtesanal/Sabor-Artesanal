@@ -1,57 +1,53 @@
-/* --- Fix botón de login fuera de pantalla en móvil --- */
-#admin-login-form {
-    display: flex;
-    flex-direction: column;
-    gap: 0.7em;
-    align-items: stretch;
-}
-
-#admin-login-form input[type="password"],
-#admin-login-form button {
-    width: 100%;
-    box-sizing: border-box;
-    min-width: 0;
-}
-
-@media (min-width: 600px) {
-    #admin-login-form {
-        flex-direction: row;
-        gap: 0.5em;
-        align-items: center;
-    }
-
-    #admin-login-form input[type="password"],
-    #admin-login-form button {
-        width: auto;
-        min-width: 0;
-    }
-}
-
 body {
-    background: #fff6ed;
-    color: #804000;
+    background: #f7f3ee;
+    color: #4b2e19;
     font-family: 'Segoe UI', 'Arial', sans-serif;
     margin: 0;
     min-height: 100vh;
 }
 
 header {
-    background: #804000;
-    color: #fff6ed;
-    padding: 2rem 0 1rem 0;
+    background: #fff;
+    color: #4b2e19;
     text-align: center;
+    padding: 2rem 0 1rem 0;
     box-shadow: 0 2px 8px #0001;
 }
 
-header h1 {
-    margin: 0;
+.logo-circle {
+    display: inline-block;
+    background: #f7f3ee;
+    border: 3px solid #4b2e19;
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+    margin-bottom: 0.7rem;
+    box-shadow: 0 2px 8px #0002;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-icon {
     font-size: 2.5rem;
+}
+
+h1 {
+    font-family: 'Brush Script MT', cursive;
+    font-size: 2.3rem;
+    margin: 0.2rem 0 0.3rem 0;
     letter-spacing: 2px;
 }
 
-header p {
-    margin: 0.5rem 0 0 0;
-    font-size: 1.2rem;
+.subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 0.2rem;
+}
+
+.contact {
+    font-size: 1rem;
+    color: #7a5c3a;
+    margin-bottom: 0.5rem;
 }
 
 main {
@@ -63,10 +59,10 @@ main {
     align-items: center;
 }
 
-#products-section h2,
-#admin-panel h2 {
-    color: #804000;
+#products-section h2 {
+    color: #4b2e19;
     margin-bottom: 1rem;
+    font-size: 1.3rem;
 }
 
 .products-grid {
@@ -80,7 +76,7 @@ main {
 .product-card {
     background: #fff;
     border-radius: 16px;
-    box-shadow: 0 2px 12px #80400022;
+    box-shadow: 0 2px 12px #4b2e1922;
     padding: 1.2rem 1rem 1rem 1rem;
     display: flex;
     flex-direction: column;
@@ -91,196 +87,59 @@ main {
 
 .product-card:hover {
     transform: translateY(-4px) scale(1.03);
-    box-shadow: 0 4px 20px #80400033;
+    box-shadow: 0 4px 20px #4b2e1933;
 }
 
 .product-card img {
     width: 100%;
     height: 220px;
-    max-width: 100%;
-    min-width: 0;
     object-fit: cover;
     border-radius: 16px 16px 12px 12px;
     margin: 0 0 0.7rem 0;
-    box-shadow: 0 1px 6px #80400022;
+    box-shadow: 0 1px 6px #4b2e1922;
 }
 
 .product-card h3 {
     margin: 0.2rem 0 0.3rem 0;
     font-size: 1.2rem;
-    color: #804000;
+    color: #4b2e19;
 }
 
 .product-card p {
     font-size: 0.98rem;
-    color: #6a3a00;
+    color: #7a5c3a;
     margin: 0 0 0.5rem 0;
     text-align: center;
 }
 
 .product-card .price {
     font-weight: bold;
-    color: #804000;
+    color: #4b2e19;
     margin-bottom: 0.7rem;
     display: block;
-}
-
-.product-card .delete-btn {
-    background: #804000;
-    color: #fff6ed;
-    border: none;
-    border-radius: 8px;
-    padding: 0.4rem 1.1rem;
-    cursor: pointer;
-    font-size: 0.95rem;
-    margin-top: 0.3rem;
-    transition: background 0.2s;
-}
-
-.product-card .delete-btn:hover {
-    background: #a05a1a;
-}
-
-#admin-panel {
-    background: #fff;
-    border-radius: 14px;
-    box-shadow: 0 2px 10px #80400018;
-    padding: 1.5rem 1rem 1rem 1rem;
-    margin-bottom: 2rem;
-}
-
-#add-product-form {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.7rem;
-    margin-bottom: 0.7rem;
-    align-items: flex-end;
-    justify-content: flex-start;
-}
-
-@media (max-width: 600px) {
-    #add-product-form {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0.7rem;
-    }
-
-    #add-product-form input,
-    #add-product-form .custom-file-label,
-    #add-product-form .file-name,
-    #add-product-form button {
-        width: 100%;
-        min-width: 0;
-        box-sizing: border-box;
-    }
-}
-
-#add-product-form input {
-    flex: 1 1 180px;
-    padding: 0.5rem;
-    border: 1px solid #80400044;
-    border-radius: 7px;
-    font-size: 1rem;
-    background: #fff6ed;
-    color: #804000;
-}
-
-#add-product-form input[type="file"] {
-    display: none;
-}
-
-#add-product-form .custom-file-label {
-    display: inline-block;
-    background: #804000;
-    color: #fff6ed;
-    border: none;
-    border-radius: 8px;
-    padding: 0.5rem 1.2rem;
-    font-size: 1rem;
-    cursor: pointer;
-    margin-bottom: 0.7rem;
-    margin-right: 0.7rem;
-    transition: background 0.2s;
-    font-weight: bold;
-}
-
-#add-product-form .custom-file-label:hover {
-    background: #a05a1a;
-}
-
-#add-product-form .file-name {
-    color: #804000;
-    font-size: 0.98rem;
-    margin-right: 0.7rem;
-}
-
-#add-product-form button {
-    background: #804000;
-    color: #fff6ed;
-    border: none;
-    border-radius: 8px;
-    padding: 0.5rem 1.2rem;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background 0.2s;
-}
-
-#add-product-form button:hover {
-    background: #a05a1a;
-}
-
-#admin-panel small {
-    color: #6a3a00;
-    display: block;
-    margin-top: 0.5rem;
-}
-
-#admin-login-form {
-    display: flex;
-    gap: 0.7rem;
-    justify-content: flex-start;
-    align-items: center;
-    margin-bottom: 1.2rem;
-}
-
-#admin-login-form input[type="password"] {
-    padding: 0.5rem 1rem;
-    border: 1px solid #80400044;
-    border-radius: 7px;
-    font-size: 1rem;
-    background: #fff6ed;
-    color: #804000;
-    outline: none;
-    transition: border 0.2s;
-}
-
-#admin-login-form input[type="password"]:focus {
-    border: 1.5px solid #804000;
-}
-
-#admin-login-form button[type="submit"] {
-    background: #804000;
-    color: #fff6ed;
-    border: none;
-    border-radius: 8px;
-    padding: 0.5rem 1.2rem;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background 0.2s;
-    font-weight: bold;
-    letter-spacing: 1px;
-}
-
-#admin-login-form button[type="submit"]:hover {
-    background: #a05a1a;
 }
 
 footer {
-    background: #804000;
-    color: #fff6ed;
+    background: #fff;
+    color: #4b2e19;
     text-align: center;
     padding: 1rem 0;
     margin-top: 2rem;
-    border-radius: 12px 12px 0 0;
-    box-shadow: 0 -2px 8px #0001;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+
+@media (max-width: 600px) {
+    main {
+        padding: 0 0.2rem;
+    }
+
+    .products-grid {
+        gap: 1rem;
+    }
+
+    .product-card img {
+        height: 160px;
+    }
 }

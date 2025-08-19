@@ -4,42 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Repostería - Menú</title>
+    <title>Sabor Artesanal</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <header>
-        <h1>menu</h1>
-        <p>Pan, café y batidos en un ambiente cálido</p>
+    <header class="main-header" style="text-align:center; padding-top:2em;">
+        <div class="logo-wrap"
+            style="background:#fff; border-radius:24px; display:inline-block; box-shadow:0 4px 24px #0002; padding:1em; margin-bottom:1em;">
+            <img src="img/logo.png" alt="Logo Sabor Artesanal" id="main-logo"
+                style="height:160px; border-radius:18px; display:block; margin:auto;">
+        </div>
+        <div class="header-row">
+            <h1 style="font-size:2.2em; margin-bottom:0.3em; color:#6B4F1D; font-family:cursive;">
+                Sabor Artesanal
+            </h1>
+        </div>
+        <p class="subtitle" style="font-size:1.1em; color:#8D6E63; margin-bottom:0.2em;">
+            Café y panadería artesanal
+        </p>
+        <p class="contact" style="color:#A1887F; font-size:1em;">Tel: +505 5851 1066</p>
     </header>
     <main>
         <section id="products-section">
             <h2>Nuestros productos</h2>
             <div id="products-container" class="products-grid"></div>
         </section>
-        <!-- Se eliminó el menú de administrador, ahora todo se gestiona desde el array en app.js -->
     </main>
     <footer>
-        &copy; 2025 Repostería. Todos los derechos reservados.
+        &copy; 2025 Sabor Artesanal. Todos los derechos reservados.
     </footer>
-    <!-- Firebase App (core) -->
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-    <!-- Firebase Storage -->
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
-    <script>
-        // Reemplaza estos valores con los de tu proyecto Firebase
-        const firebaseConfig = {
-            apiKey: "TU_API_KEY",
-            authDomain: "TU_DOMINIO.firebaseapp.com",
-            projectId: "TU_PROJECT_ID",
-            storageBucket: "TU_PROJECT_ID.appspot.com",
-            messagingSenderId: "XXX",
-            appId: "XXX"
-        };
-        firebase.initializeApp(firebaseConfig);
-        const storage = firebase.storage();
-    </script>
+    <!-- Botón flotante eliminado, solo queda el del header -->
     <script src="app.js"></script>
 </body>
 
