@@ -51,7 +51,6 @@ const products = [
         price: 900.00,
         images: ["img/Pasteles de Boda.png"]
     },
-    // Agrega más productos aquí
 ];
 
 function renderProducts() {
