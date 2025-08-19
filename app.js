@@ -13,13 +13,13 @@ const products = [
         images: ["img/capuchino.png"]
     },
     {
-        name: "Trensas Dulces.",
+        name: "Trensas semi dulces.",
         description: "Deliciosas trensas de pan dulce.",
         price: 25.00,
         images: ["img/trensas.png"]
     },
     {
-        name: "Pizza artesanal.",
+        name: "Pizza Artesanal.",
         description: "Deliciosa pizza artesanal con ingredientes frescos.",
         price: 30.00,
         images: ["img/pizza artesanal.png"]
