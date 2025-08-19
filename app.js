@@ -13,16 +13,16 @@ const products = [
         images: ["img/capuchino.png"]
     },
     {
-        name: "Pizza artesanal.",
-        description: "Deliciosa pizza artesanal con ingredientes frescos.",
-        price: 30.00,
-        images: ["img/pizza artesanal.png"]
-    },
-    {
         name: "Trensas Dulces.",
         description: "Deliciosas trensas de pan dulce.",
         price: 25.00,
         images: ["img/trensas.png"]
+    },
+    {
+        name: "Pizza artesanal.",
+        description: "Deliciosa pizza artesanal con ingredientes frescos.",
+        price: 30.00,
+        images: ["img/pizza artesanal.png"]
     },
     {
         name: "Grisinis con ajonjolí",
