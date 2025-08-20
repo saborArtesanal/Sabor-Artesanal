@@ -83,11 +83,66 @@ function renderProducts() {
                 this.onerror = null;
                 this.src = 'https://via.placeholder.com/300x200?text=Sin+Imagen';
             };
+            let current = 0;
+            let intervalId = null;
+            // Carrusel automático si hay más de una imagen
+            if (images.length > 1) {
+                intervalId = setInterval(() => {
+                    current = (current + 1) % images.length;
+                    img.src = images[current];
+                }, 3000);
+                // Flechas manuales
+                const leftBtn = document.createElement('button');
+                leftBtn.innerHTML = '<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="16" r="15" fill="rgba(40,30,20,0.7)"/><path d="M19 10L13 16L19 22" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+                leftBtn.style.position = 'absolute';
+                leftBtn.style.left = '10px';
+                leftBtn.style.top = '50%';
+                leftBtn.style.transform = 'translateY(-50%)';
+                leftBtn.style.background = 'none';
+                leftBtn.style.border = 'none';
+                leftBtn.style.borderRadius = '50%';
+                leftBtn.style.width = '2.5em';
+                leftBtn.style.height = '2.5em';
+                leftBtn.style.cursor = 'pointer';
+                leftBtn.style.boxShadow = '0 2px 8px #0003';
+                leftBtn.onclick = function (e) {
+                    e.stopPropagation();
+                    current = (current - 1 + images.length) % images.length;
+                    img.src = images[current];
+                };
+                imgWrap.appendChild(leftBtn);
+                const rightBtn = document.createElement('button');
+                rightBtn.innerHTML = '<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="16" r="15" fill="rgba(40,30,20,0.7)"/><path d="M13 10L19 16L13 22" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+                rightBtn.style.position = 'absolute';
+                rightBtn.style.right = '10px';
+                rightBtn.style.top = '50%';
+                rightBtn.style.transform = 'translateY(-50%)';
+                rightBtn.style.background = 'none';
+                rightBtn.style.border = 'none';
+                rightBtn.style.borderRadius = '50%';
+                rightBtn.style.width = '2.5em';
+                rightBtn.style.height = '2.5em';
+                rightBtn.style.cursor = 'pointer';
+                rightBtn.style.boxShadow = '0 2px 8px #0003';
+                rightBtn.onclick = function (e) {
+                    e.stopPropagation();
+                    current = (current + 1) % images.length;
+                    img.src = images[current];
+                };
+                imgWrap.appendChild(rightBtn);
+                // Detener carrusel al pasar el mouse
+                imgWrap.onmouseenter = () => { if (intervalId) clearInterval(intervalId); };
+                imgWrap.onmouseleave = () => {
+                    if (!intervalId) intervalId = setInterval(() => {
+                        current = (current + 1) % images.length;
+                        img.src = images[current];
+                    }, 3000);
+                };
+            }
             img.onclick = function () {
                 const modal = document.getElementById('img-modal');
                 const modalImg = document.getElementById('img-modal-img');
                 if (modal && modalImg) {
-                    let current = 0;
                     modalImg.src = images[current];
                     modal.style.display = 'flex';
                     // Elimina flechas previas
@@ -103,9 +158,8 @@ function renderProducts() {
                         arrows.style.width = '100%';
                         arrows.style.position = 'absolute';
                         arrows.style.left = '0';
-                        arrows.style.bottom = '14vh'; // subidas un poco
+                        arrows.style.bottom = '14vh';
                         arrows.style.zIndex = '10002';
-                        // Flecha izquierda
                         let leftBtn = document.createElement('button');
                         leftBtn.innerHTML = '<svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="28" cy="28" r="24" fill="rgba(40,30,20,0.8)"/><path d="M32 18L22 28L32 38" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
                         leftBtn.style.background = 'none';
@@ -123,7 +177,6 @@ function renderProducts() {
                             current = (current - 1 + images.length) % images.length;
                             modalImg.src = images[current];
                         };
-                        // Flecha derecha
                         let rightBtn = document.createElement('button');
                         rightBtn.innerHTML = '<svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="28" cy="28" r="24" fill="rgba(40,30,20,0.8)"/><path d="M24 18L34 28L24 38" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
                         rightBtn.style.background = 'none';
@@ -143,13 +196,11 @@ function renderProducts() {
                         };
                         arrows.appendChild(leftBtn);
                         arrows.appendChild(rightBtn);
-                        // Agrega el contenedor de flechas después de la imagen
                         modalImg.insertAdjacentElement('afterend', arrows);
                     }
                 }
             };
             imgWrap.appendChild(img);
-            // Ya no se agregan flechas aquí
             card.appendChild(imgWrap);
         }
         // Título
